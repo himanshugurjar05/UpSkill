@@ -4,12 +4,10 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import usePageTitle from '../hooks/use_page_title'
-import useAuthStore from "../store/authStore";
 
 export default function Login() {
   let navigate = useNavigate();
   usePageTitle({title: 'Login'});
-  const login = useAuthStore((state) => state.login);
   
   let [formData, setFormData] = useState({
     email: '',
@@ -26,7 +24,6 @@ export default function Login() {
       if (Res.data.token) {
         localStorage.setItem('token', Res.data.token);
         localStorage.setItem('user', JSON.stringify(Res.data.user));
-        login()
         navigate("/");
       } else {
         alert(Res.data.message);

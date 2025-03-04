@@ -1,36 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import useAuthStore from "../store/authStore";
 
 export default function Navbar() {
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
-  const userData = useAuthStore((state) => state.userData);
-  const logout = useAuthStore((state) => state.logout);
-  // const [userData, setUserData] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token");
-  //   if (token) {
-  //     try {
-  //       // const storedUser = JSON.parse(localStorage.getItem("user"));
-  //       // setIsLoggedIn(true);
-  //       setUserData(storedUser);
-  //     } catch (error) {
-  //       console.error("Error parsing user data:", error);
-  //       localStorage.removeItem("token");
-  //       localStorage.removeItem("user");
-  //     }
-  //   }
-  // }, [userData]);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      try {
+        const storedUser = JSON.parse(localStorage.getItem("user"));
+        setIsLoggedIn(true);
+        setUserData(storedUser);
+      } catch (error) {
+        console.error("Error parsing user data:", error);
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+      }
+    }
+  }, [userData]);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    // setIsLoggedIn(false);
-    // setUserData(null);
-    logout()
+    setIsLoggedIn(false);
+    setUserData(null);
     navigate("/");
   };
 
