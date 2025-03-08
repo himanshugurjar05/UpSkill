@@ -2,7 +2,8 @@ import React from 'react'
 
 import Navbar from './Components/Navbar'
 import Home from './Pages/Home.jsx'
-import Courses from './Pages/courses.jsx'
+import Courses from './Pages/Courses.jsx'
+import EnrollCourses from './Pages/EnrollCourses.jsx'
 import Contact from './Pages/Contact.jsx'
 
 import Login from './Components/Login.jsx'
@@ -18,6 +19,7 @@ export default function App() {
           <Routes>
             <Route path='/'  element={<Home/>}/>
             <Route path='/courses'  element={<Courses/>}/>
+            <Route path='/courses/enroll/:cid' element={<EnrollCourses/>}/>
             <Route path='/contact'  element={<Contact/>}/>
             
             <Route path='/login'  element={<Login/>}/>

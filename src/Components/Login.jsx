@@ -1,5 +1,3 @@
-
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
@@ -8,6 +6,7 @@ import useAuthStore from "../store/authStore";
 
 export default function Login() {
   let navigate = useNavigate();
+  
   usePageTitle({title: 'Login'});
   const login = useAuthStore((state) => state.login);
   
@@ -20,9 +19,8 @@ export default function Login() {
     e.preventDefault();
     try {
       let Res = await axios.post('http://localhost:5500/api/user/login', formData);
-
       console.log(Res.data);
-
+ 
       if (Res.data.token) {
         localStorage.setItem('token', Res.data.token);
         localStorage.setItem('user', JSON.stringify(Res.data.user));
@@ -31,6 +29,7 @@ export default function Login() {
       } else {
         alert(Res.data.message);
       }
+
     } catch (error) {
       console.error("Login failed:", error);
       alert(error.response.data.message);
