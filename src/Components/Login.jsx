@@ -24,7 +24,7 @@ export default function Login() {
       if (Res.data.token) {
         localStorage.setItem('token', Res.data.token);
         localStorage.setItem('user', JSON.stringify(Res.data.user));
-        login()
+        // login()
         navigate("/");
       } else {
         alert(Res.data.message);
@@ -32,7 +32,7 @@ export default function Login() {
 
     } catch (error) {
       console.error("Login failed:", error);
-      alert(error.response.data.message);
+      // alert(error.response.data.message);
     }
   }
 
@@ -44,7 +44,7 @@ export default function Login() {
     <div className="flex justify-center items-center min-h-screen bg-gray-50">
       <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-xl shadow-lg">
         <div className="text-center">
-          <h2 className="mt-2 text-3xl font-extrabold text-gray-900">Log In</h2>
+          <h2 className="mt-2 text-3xl font-extrabold text-gray-900">Log In As a User</h2>
           <p className="mt-2 text-sm text-gray-600">Access your account</p>
         </div>
         
@@ -82,15 +82,15 @@ export default function Login() {
               type="submit"
               className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300"
             >
-              Log In
+              Log In 
             </button>
           </div>
         </form>
         
         <div className="flex items-center justify-between">
           <div className="text-sm">
-            <Link to="/forgot-password" className="font-medium text-indigo-600 hover:text-indigo-500">
-              Forgot your password?
+            <Link to="/admin/login" className="font-medium text-indigo-600 hover:text-indigo-500">
+              login as a admin
             </Link>
           </div>
           <div className="text-sm">
