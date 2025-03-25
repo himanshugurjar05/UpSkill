@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import { useNavigate, Link} from 'react-router-dom'
+const API_URI = import.meta.env.VITE_API_URI;
 
 export default function Courses() {
   let navigate = useNavigate();
@@ -14,7 +15,7 @@ export default function Courses() {
     }
     
        async function getdata() {
-            let Res = await axios.get('http://localhost:5500/api/course',{
+            let Res = await axios.get(`${API_URI}/course`,{
                 headers: {'Authorization':token}
             })
             setcard(Res.data)

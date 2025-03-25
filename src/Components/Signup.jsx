@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import usePageTitle from '../hooks/use_page_title'
+const API_URI = import.meta.env.VITE_API_URI;
 
 export default function Signup() {
   let navigate = useNavigate()
@@ -26,7 +27,7 @@ export default function Signup() {
       age:formData.age
     };
 
-    let Res = await axios.post('http://localhost:5500/api/user/signup', Data )
+    let Res = await axios.post(`${API_URI}/user/signup`, Data )
     console.log(Res.data)
     navigate("/login");
   }

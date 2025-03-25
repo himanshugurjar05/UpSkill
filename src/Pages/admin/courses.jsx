@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+const API_URI = import.meta.env.VITE_API_URI;
 
 export default function courses() {
   let [adminformData, setadminformData] = useState({
@@ -28,7 +29,7 @@ export default function courses() {
       return;
     }
 
-    let Res = await axios.post('http://localhost:5600/api/course/create', Data,{
+    let Res = await axios.post(`${API_URI}/course/create`, Data,{
       headers: {'Authorization':token} 
     })
     console.log(Res.data);  

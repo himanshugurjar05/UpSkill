@@ -1,5 +1,6 @@
 import React, { useState, useEffect, use } from 'react'
 import axios from 'axios'
+const API_URI = import.meta.env.VITE_API_URI;
 
  export default function MyCourses() {
   let [mycourses, setmyCourses] = useState([])
@@ -11,7 +12,7 @@ import axios from 'axios'
     }
     
     async function getdata() {
-      let Res = await axios.get('http://localhost:5500/api/Enroll/getEnrolled', 
+      let Res = await axios.get(`${API_URI}/Enroll/getEnrolled`, 
         {
           headers: { 'Authorization': token }
         }

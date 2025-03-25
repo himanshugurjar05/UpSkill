@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+const API_URI = import.meta.env.VITE_API_URI;
 
 export default function EnrollCourses() {
     let { cid } = useParams()
@@ -13,7 +14,7 @@ export default function EnrollCourses() {
         }
 
         async function getdata() {
-            let Res = await axios.get(`http://localhost:5500/api/course/${cid}`, {
+            let Res = await axios.get(`${API_URI}/course/${cid}`, {
                 headers: { 'Authorization': token }
             })
             // console.log(Res.data)
@@ -30,7 +31,7 @@ export default function EnrollCourses() {
         }
 
         async function setdata() {
-            let Res = await axios.post('http://localhost:5500/api/Enroll/createEnrolled', {
+            let Res = await axios.post(`${API_URI}/Enroll/createEnrolled`, {
                 "courseId": courseId
             }, {
                 headers: { 'Authorization': token }

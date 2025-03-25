@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import usePageTitle from '../hooks/use_page_title'
 import useAuthStore from "../store/authStore";
+const API_URI = import.meta.env.VITE_API_URI;
 
 export default function Login() {
   let navigate = useNavigate();
@@ -18,7 +19,7 @@ export default function Login() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      let Res = await axios.post('http://localhost:5500/api/user/login', formData);
+      let Res = await axios.post(`${API_URI}/user/login`, formData);
       console.log(Res.data);
  
       if (Res.data.token) {
