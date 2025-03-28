@@ -32,7 +32,7 @@ export default function Navbar() {
     setIsLoggedIn(false);
     setUserData(null);
     // logout()
-    navigate("/");
+    navigate("/login");
   };
 
   return (
