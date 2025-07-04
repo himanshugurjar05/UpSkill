@@ -41,8 +41,8 @@ app.get('/', (req, res) => {
 
 // ✅ Ensure API route prefix is correct
 app.use('/user', UserRouter);
-app.use('/api/courses', authmiddleware, CourseRouter);
-app.use('/api/Enroll', authmiddleware, EnrollRouter);
+app.use('/courses', authmiddleware, CourseRouter);
+app.use('/Enroll', authmiddleware, EnrollRouter);
 
 // Start Server
 const PORT = process.env.PORT || 5500;
