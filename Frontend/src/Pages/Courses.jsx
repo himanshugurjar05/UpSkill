@@ -14,7 +14,7 @@ export default function Courses() {
 
     async function getdata() {
       const Res = await axios.get(`${API_URI}/courses`, {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: token }
       });
       setcard(Res.data);
     }
