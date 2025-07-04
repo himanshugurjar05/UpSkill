@@ -40,7 +40,7 @@ app.get('/', (req, res) => {
 });
 
 // ✅ Ensure API route prefix is correct
-app.use('/api/user', UserRouter);
+app.use('/user', UserRouter);
 app.use('/api/courses', authmiddleware, CourseRouter);
 app.use('/api/Enroll', authmiddleware, EnrollRouter);
 
