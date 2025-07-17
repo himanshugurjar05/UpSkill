@@ -33,7 +33,7 @@ export default function Navbar() {
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  }, [isLoggedIn, userData]);
 
   return (
     <nav className="bg-gradient-to-r from-blue-600 to-indigo-700 px-4 py-3 shadow-lg">
