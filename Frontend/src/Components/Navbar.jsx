@@ -11,17 +11,35 @@ import {
   Menu,
   X,
 } from "lucide-react";
-import useAuthStore from "../store/authStore.js"; 
 
 export default function Navbar() {
-  const { isLoggedIn, userData, logout } = useAuthStore(); 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userData, setUserData] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      try {
+        const storedUser = JSON.parse(localStorage.getItem("user"));
+        setIsLoggedIn(true);
+        setUserData(storedUser);
+      } catch (error) {
+        console.error("Error parsing user data:", error);
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+      }
+    }
+  }, []);
+
   const handleLogout = () => {
-    logout(); 
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setIsLoggedIn(false);
+    setUserData(null);
     navigate("/login");
   };
 
@@ -33,7 +51,7 @@ export default function Navbar() {
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isLoggedIn, userData]);
+  }, []);
 
   return (
     <nav className="bg-gradient-to-r from-blue-600 to-indigo-700 px-4 py-3 shadow-lg">
