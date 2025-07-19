@@ -20,7 +20,8 @@ export default function Navbar() {
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
+useEffect(() => {
+  const checkLogin = () => {
     const token = localStorage.getItem("token");
     if (token) {
       try {
@@ -32,8 +33,18 @@ export default function Navbar() {
         localStorage.removeItem("token");
         localStorage.removeItem("user");
       }
+    } else {
+      setIsLoggedIn(false);
+      setUserData(null);
     }
-  }, []);
+  };
+
+  checkLogin();
+
+  window.addEventListener("userLoggedIn", checkLogin);
+  return () => window.removeEventListener("userLoggedIn", checkLogin);
+}, []);
+
 
   const handleLogout = () => {
     localStorage.removeItem("token");

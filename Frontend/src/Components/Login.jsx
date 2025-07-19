@@ -166,6 +166,7 @@ export default function Login() {
   
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(decodedUser));
+        window.dispatchEvent(new Event("userLoggedIn"));
   
         window.history.replaceState({}, document.title, window.location.pathname);
         navigate("/");
@@ -186,6 +187,8 @@ export default function Login() {
       if (Res.data.token) {
         localStorage.setItem('token', Res.data.token);
         localStorage.setItem('user', JSON.stringify(Res.data.user));
+        window.dispatchEvent(new Event("userLoggedIn")); 
+
         login();
         navigate("/");
       } else {
